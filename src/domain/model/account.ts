@@ -20,11 +20,12 @@ export class Account {
   constructor(account: AccountType) {
     const { id, name, email, password } = account;
 
+    const okID = z.string().uuid().parse(id);
     const okName = z.string().min(3).max(255).parse(name);
     const okEmail = z.string().email().parse(email);
     const okPassword = z.string().min(6).max(255).parse(password);
 
-    this.id = id;
+    this.id = okID;
     this.name = okName;
     this.email = okEmail;
     this.password = okPassword;
