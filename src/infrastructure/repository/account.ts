@@ -5,12 +5,13 @@ const prisma = new PrismaClient();
 
 export class AccountRepository implements IAccountRepository {
   async create(account: Account): Promise<Account> {
+    const { id, name, email, password } = account;
     const created = await prisma.user.create({
       data: {
-        id: account.id,
-        name: account.name,
-        email: account.email,
-        password: account.password,
+        id,
+        name,
+        email,
+        password,
       },
     });
 
