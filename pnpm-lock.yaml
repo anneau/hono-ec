@@ -1,6 +1,9 @@
 lockfileVersion: '6.0'
 
 dependencies:
+  '@hono/zod-validator':
+    specifier: ^0.1.3
+    version: 0.1.3(hono@3.2.4)(zod@3.21.4)
   '@prisma/client':
     specifier: 4.15.0
     version: 4.15.0(prisma@4.15.0)
@@ -300,6 +303,16 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@hono/zod-validator@0.1.3(hono@3.2.4)(zod@3.21.4):
+    resolution: {integrity: sha512-g6dnqmkehV6VHjemJoWYwWqD/YwAl8awNJR2fxL8bqvPiYPvShycRZDrdHSpobgX61kaBc4n8mt0YJSHYvKbFQ==}
+    peerDependencies:
+      hono: 3.*
+      zod: ^3.19.1
+    dependencies:
+      hono: 3.2.4
+      zod: 3.21.4
+    dev: false
 
   /@prisma/client@4.15.0(prisma@4.15.0):
     resolution: {integrity: sha512-xnROvyABcGiwqRNdrObHVZkD9EjkJYHOmVdlKy1yGgI+XOzvMzJ4tRg3dz1pUlsyhKxXGCnjIQjWW+2ur+YXuw==}
