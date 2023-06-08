@@ -14,7 +14,7 @@ export class CreateAccountDTO {
   }
 }
 
-export class CreateAccount {
+export class CreateAccountUsecase {
   private repository: AccountRepository;
 
   constructor(repository: AccountRepository) {
