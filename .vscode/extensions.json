@@ -4,6 +4,7 @@
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
     "seatonjiang.gitmoji-vscode",
-    "github.copilot"
+    "github.copilot",
+    "prisma.prisma"
   ]
 }
