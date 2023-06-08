@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 export class AccountRepository implements IAccountRepository {
   async create(account: Account): Promise<Account> {
     const { id, name, email, password } = account;
-    const created = await prisma.user.create({
+    const created = await prisma.account.create({
       data: {
         id,
         name,
