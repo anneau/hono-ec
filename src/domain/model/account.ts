@@ -8,6 +8,7 @@ export type AccountType = {
 };
 
 export interface IAccountRepository {
+  find(id: string): Promise<Account>;
   create(account: Account): Promise<Account>;
 }
 
