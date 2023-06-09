@@ -7,14 +7,44 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("MIGRATE_DATABASE_URL")
 }
 
 model Account {
-  id        String   @id @default(uuid())
-  email     String   @unique
+  id        String    @id @default(uuid())
+  email     String    @unique
   name      String
   password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  Products  Product[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Product {
+  id         String                 @id @default(uuid())
+  owner      Account                @relation(fields: [id], references: [id])
+  name       String
+  price      Float
+  createdAt  DateTime               @default(now())
+  updatedAt  DateTime               @updatedAt
+  categories CategoriesOnProducts[]
+}
+
+model Category {
+  id        String                 @id @default(uuid())
+  name      String
+  createdAt DateTime               @default(now())
+  updatedAt DateTime               @updatedAt
+  products  CategoriesOnProducts[]
+}
+
+model CategoriesOnProducts {
+  productId  String
+  Product    Product  @relation(fields: [productId], references: [id])
+  categoryId String
+  Category   Category @relation(fields: [categoryId], references: [id])
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@id([productId, categoryId])
 }
