@@ -1,12 +1,16 @@
 import { PrismaClient } from "@prisma/client";
 import { Account, IAccountRepository } from "../../domain/model/account";
 
-const prisma = new PrismaClient();
-
 export class AccountRepository implements IAccountRepository {
+  private prisma: PrismaClient;
+
+  constructor(prismaClient: PrismaClient) {
+    this.prisma = prismaClient;
+  }
+
   async create(account: Account): Promise<Account> {
     const { id, name, email, password } = account;
-    const created = await prisma.account.create({
+    const created = await this.prisma.account.create({
       data: {
         id,
         name,
