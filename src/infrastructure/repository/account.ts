@@ -15,7 +15,27 @@ export class AccountRepository implements IAccountRepository {
 
     if (!found) throw new Error("アカウントが見つかりませんでした");
 
-    return new Account(found);
+    return Account.reConstructor(
+      found.id,
+      found.name,
+      found.email,
+      found.password
+    );
+  }
+
+  async findByEmail(email: string): Promise<Account> {
+    const found = await this.prisma.account.findUnique({
+      where: { email },
+    });
+
+    if (!found) throw new Error("アカウントが見つかりませんでした");
+
+    return Account.reConstructor(
+      found.id,
+      found.name,
+      found.email,
+      found.password
+    );
   }
 
   async create(account: Account): Promise<Account> {
@@ -29,6 +49,11 @@ export class AccountRepository implements IAccountRepository {
       },
     });
 
-    return new Account(created);
+    return Account.reConstructor(
+      created.id,
+      created.name,
+      created.email,
+      created.password
+    );
   }
 }

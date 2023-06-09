@@ -20,8 +20,20 @@ export class CreateAccountUsecase {
     this.repository = repository;
   }
 
-  async execute(name: string, email: string, password: string) {
-    const account = new Account({ id: uuidv4(), name, email, password });
+  async execute(
+    name: string,
+    email: string,
+    password: string,
+    passwordConfirmation: string
+  ) {
+    const account = await Account.initialize(
+      this.repository,
+      uuidv4(),
+      name,
+      email,
+      password,
+      passwordConfirmation
+    );
     const created = await this.repository.create(account);
     return new CreateAccountDTO(created.id, created.name, created.email);
   }
