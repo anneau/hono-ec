@@ -1,5 +1,4 @@
-import { Account } from "../../domain/model/account";
-import { AccountRepository } from "../../infrastructure/repository/account";
+import { Account, IAccountRepository } from "../../domain/model/account";
 import { v4 as uuidv4 } from "uuid";
 
 export class CreateAccountDTO {
@@ -15,9 +14,9 @@ export class CreateAccountDTO {
 }
 
 export class CreateAccountUsecase {
-  private repository: AccountRepository;
+  private repository: IAccountRepository;
 
-  constructor(repository: AccountRepository) {
+  constructor(repository: IAccountRepository) {
     this.repository = repository;
   }
 
