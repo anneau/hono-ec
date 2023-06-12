@@ -33,11 +33,13 @@ app.post(
     })
   ),
   async (c) => {
-    const { name, email, password } = c.req.valid("form");
+    const { name, email, password, passwordConfirmation } = c.req.valid("form");
     const prisma = initializePrismaClient(c.env.DATABASE_URL);
     const repository = new AccountRepository(prisma);
     const usecase = new CreateAccountUsecase(repository);
-    return c.json(await usecase.execute(name, email, password));
+    return c.json(
+      await usecase.execute(name, email, password, passwordConfirmation)
+    );
   }
 );
 
