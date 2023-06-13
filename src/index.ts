@@ -2,13 +2,13 @@ import { Hono } from "hono";
 import { zValidator } from "@hono/zod-validator";
 import { AccountRepository } from "./infrastructure/repository/account";
 import { CreateAccountUsecase } from "./application/usecase/create-account";
-import { schema } from "./api/controller/create-account";
 import { initializePrismaClient } from "./infrastructure/datasource/prisma";
 import { MeUsecase } from "./application/usecase/me";
 import { z } from "zod";
 
 type Bindings = {
   DATABASE_URL: string;
+  AUTH_PRIVATE_KEY: string;
 };
 
 const app = new Hono<{ Bindings: Bindings }>();
