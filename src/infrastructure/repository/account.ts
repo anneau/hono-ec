@@ -13,14 +13,12 @@ export class AccountRepository implements IAccountRepository {
       where: { id },
     });
 
-    if (!found) throw new Error("アカウントが見つかりませんでした");
-
-    return Account.reConstructor(
-      found.id,
-      found.name,
-      found.email,
-      found.password
-    );
+    return new Promise((resolve, reject) => {
+      if (!found) return reject(new Error("アカウントが見つかりませんでした"));
+      return resolve(
+        Account.reConstructor(found.id, found.name, found.email, found.password)
+      );
+    });
   }
 
   async findByEmail(email: string): Promise<Account> {
@@ -28,14 +26,12 @@ export class AccountRepository implements IAccountRepository {
       where: { email },
     });
 
-    if (!found) throw new Error("アカウントが見つかりませんでした");
-
-    return Account.reConstructor(
-      found.id,
-      found.name,
-      found.email,
-      found.password
-    );
+    return new Promise((resolve, reject) => {
+      if (!found) return reject(new Error("アカウントが見つかりませんでした"));
+      return resolve(
+        Account.reConstructor(found.id, found.name, found.email, found.password)
+      );
+    });
   }
 
   async create(account: Account): Promise<Account> {
